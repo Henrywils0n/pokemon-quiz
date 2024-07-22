@@ -9,7 +9,7 @@ function Header() {
       <Link to="/">
         <img className="Header__logo" src={logo} alt="logo" />
       </Link>
-      <h1>Quel est ce Pokémon ?</h1>
+      <h1>Pokemon Quiz ?</h1>
     </div>
   );
 }

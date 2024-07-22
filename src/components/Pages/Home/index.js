@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import './style.scss';
@@ -8,15 +7,15 @@ import bulbizarre from '../../../assets/img/bulbizarre.png';
 function Home() {
   return (
     <>
-      <h2 className="title">Quel est ce Pokémon&nbsp;?</h2>
-      <p>Trouvez le nom des pokémons dans un quizz aléatoire</p>
+      <h2 className="title">Pokemon Quiz</h2>
+      <p>Compete against popular AI vision models to name the pokemon that appear on the screen.</p>
       <div className="Home__img-container">
-        <img className="Home__exemple1" src={bulbizarre} alt="exemple" />
-        <img className="Home__exemple2" src={bulbizarre} alt="exemple" />
+        <img className="Home__example1" src={bulbizarre} alt="example" />
+        <img className="Home__example2" src={bulbizarre} alt="example" />
       </div>
-      <Link to="/categorie">
+      <Link to="/category">
         <button className="Home__start-button" type="button">
-          Démarrer !
+          Begin!
         </button>
       </Link>
     </>

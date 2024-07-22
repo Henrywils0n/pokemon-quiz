@@ -13,14 +13,14 @@
     &:hover {
       cursor: pointer;
       color: #333;
-      transition: color 0.1s ease;
+      transition: color 0.4s ease;
     }
 
-    &--icone {
+    &--icon {
       width: 60px;
       position: absolute;
       top: -20px;
-      right: 13px;
+      right: -30px;
     }
   }
 }

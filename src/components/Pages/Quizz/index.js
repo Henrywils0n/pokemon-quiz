@@ -12,10 +12,12 @@ import { getTenDifferentNumber } from '../../../utils';
 
 function Quizz() {
   const { name, img } = useSelector((state) => state.pkmn);
-  // eslint-disable-next-line object-curly-newline
-  const { loading, answer, points, turn } = useSelector((state) => state);
-  const gen = useSelector((state) => state.gen);
+  const {
+    loading, answer, points, turn,
+  } = useSelector((state) => state);
 
+  const gen = useSelector((state) => state.gen);
+  const showPokemon = useSelector((state) => state.showPokemon);
   const [showPkmn, setShowPkmn] = useState(false);
   const [correct, setCorrect] = useState('');
   const [stop, setStop] = useState(false);
@@ -118,14 +120,14 @@ function Quizz() {
   return (
     <>
       <h3 className="title">Question {turn}/10</h3>
-      <p>Quel est le nom de ce Pokémon ?</p>
-      <div className={`Quizz__img-container${correct}`}>
-        <img className={showPkmn ? 'Quizz__img' : 'Quizz__img-hidden'} src={img} alt="?" />
-        {showPkmn ? <p className={`Quizz__answer${correct}`}>{name}</p> : ''}
+      <p>Who is this Pokemon?</p>
+      <div className={`Quiz__img-container${correct}`}>
+        <img className={showPkmn || showPokemon ? 'Quiz__img' : 'Quiz__img-hidden'} src={img} alt="?" />
+        {showPkmn ? <p className={`Quiz__answer${correct}`}>{name}</p> : ''}
       </div>
-      <form className="Quizz__form" onSubmit={handleSubmit} autoComplete="off" spellCheck="off">
-        <input className="Quizz__input" value={answer} autoFocus type="text" onChange={handleChange} />
-        <button className="Quizz__button" type="submit"> ► </button>
+      <form className="Quiz__form" onSubmit={handleSubmit} autoComplete="off" spellCheck="off">
+        <input className="Quiz__input" value={answer} autoFocus type="text" onChange={handleChange} />
+        <button className="Quiz__button" type="submit"> ► </button>
       </form>
       <div>{timer.timerDisplayStrings.minutes}:{timer.timerDisplayStrings.seconds}:{timer.timerDisplayStrings.milliseconds.slice(0, 2)}</div>
     </>

@@ -15,8 +15,8 @@ function App() {
       <Wrapper>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/categorie" element={<Select />} />
-          <Route path="/quizz" element={<Quizz />} />
+          <Route path="/category" element={<Select />} />
+          <Route path="/quiz" element={<Quizz />} />
           <Route path="/score" element={<Score />} />
           <Route path="/*" element={<Navigate to="/" />} />
         </Routes>

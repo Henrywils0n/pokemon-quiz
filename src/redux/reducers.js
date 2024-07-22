@@ -9,8 +9,9 @@ const initialState = {
   pkmn: {},
   points: 0,
   turn: 1,
-  quizzFinished: false,
+  quizFinished: false,
   finalTime: '',
+  showPokemon: false,
 };
 
 function reducer(state = initialState, action = {}) {
@@ -73,7 +74,7 @@ function reducer(state = initialState, action = {}) {
     case 'QUIZZ_FINISHED':
       return {
         ...state,
-        quizzFinished: true,
+        quizFinished: true,
         finalTime: action.time,
       };
 
@@ -83,7 +84,13 @@ function reducer(state = initialState, action = {}) {
         turn: 1,
         points: 0,
         answer: '',
-        quizzFinish: false,
+        quizFinish: false,
+      };
+
+    case 'SHOW_POKEMON':
+      return {
+        ...state,
+        showPokemon: action.showPokemon,
       };
 
     default:

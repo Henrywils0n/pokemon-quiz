@@ -12,7 +12,7 @@ const ajax = (store) => (next) => (action) => {
           pkmnImg = response.data.sprites.other["official-artwork"].front_default;
           axios.get(`https://pokeapi.co/api/v2/pokemon-species/${action.id}`)
             .then((response2) => {
-              pkmnName = response2.data.names.find((obj) => obj.language.name === 'fr').name;
+              pkmnName = response2.data.names.find((obj) => obj.language.name === 'en').name;
               store.dispatch({
                 type: 'SAVE_POKEMON',
                 pkmnName: pkmnName,

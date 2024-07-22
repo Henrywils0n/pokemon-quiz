@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types';
-
 import './style.scss';
 
+// eslint-disable-next-line react/prop-types
 function Wrapper({ children }) {
   return (
     <div className="Wrapper">
@@ -11,7 +10,7 @@ function Wrapper({ children }) {
 }
 
 Wrapper.propTypes = {
-  
+
 };
 
 export default Wrapper;

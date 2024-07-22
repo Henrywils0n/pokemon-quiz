@@ -10,18 +10,8 @@ const pkmnNbFromGen = (gen) => {
       return [252, 386];
     case 4:
       return [387, 493];
-    case 5:
-      return [494, 649];
-    case 6:
-      return [650, 721];
-    case 7:
-      return [722, 809];
-    case 8:
-      return [810, 905];
-    case 9:
-      return [906, 1010];
     case 0:
-      return [1, 1010];
+      return [1, 493];
     default:
       break;
   }
