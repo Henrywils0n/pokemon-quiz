@@ -1,0 +1,105 @@
+@use '/src/styles/vars';
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg)
+  }
+}
+
+.Quizz {
+  &__img {
+    max-width: 100%;
+    transform: scale(0.8);
+    
+    &-hidden {
+      max-width: 100%;
+      transform: scale(0.8);
+      filter: brightness(0);
+    }
+
+    &-container {
+      position: relative;
+      border: 6px solid transparent;
+      border-radius: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &--green {
+        position: relative;
+        border: 6px solid lightgreen;
+        border-radius: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &--red {
+        position: relative;
+        border: 6px solid red;
+        border-radius: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  &__loading-img {
+    margin-top: 50px;
+    width: 250px;
+    max-width: 80%;
+    animation: spin 1s linear infinite;
+  }
+
+  &__button {
+    height: 40px;
+    padding: 8px 16px;
+    text-align: center;
+    background-color: adjust-color(vars.$bg-color, $lightness: -25%);
+    color: white;
+    border: none;
+    border-radius: 0 8px 8px 0;
+  }
+
+  &__form {
+    display: flex;
+    align-items: center;
+  }
+
+  &__input {
+    width: 175px;
+    height: 40px;
+    padding: 8px 16px;
+    border-radius: 8px 0 0 8px;
+    font-size: 16px;
+    text-align: center;
+    border: none;
+    color:  adjust-color(vars.$bg-color, $lightness: -25%);
+
+    &:focus {
+      border: 4px solid adjust-color(vars.$bg-color, $lightness: -25%);
+      border-right: none;
+    }
+
+  }
+
+  &__answer--green {
+    position: absolute;
+    bottom: 16px;
+    font-size: 24px;
+    font-weight: bold;
+    color: lightgreen;
+  }
+
+  &__answer--red {
+    position: absolute;
+    bottom: 16px;
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
+  }
+}

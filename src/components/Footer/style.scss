@@ -1,0 +1,18 @@
+.Footer {
+  margin: 16px 0;
+
+  &__text {
+    font-size: 11px;
+    color: #85aee4;
+
+    &--link {
+      font-size: 11px;
+      color: #85aee4;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
