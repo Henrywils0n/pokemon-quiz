@@ -9,7 +9,6 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   plugins: [
-    // Recharge uniquement ce qu'il y a besoin
     new webpack.HotModuleReplacementPlugin(),
   ],
   module: {

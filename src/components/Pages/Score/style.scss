@@ -1,6 +1,33 @@
 @use '/src/styles/vars';
 
+.results {
+  display: flex;
+  width: 90%;
+  flex-direction: row;
+  border-width: medium;
+  border-color: darkblue;
+  border-radius: 5px;
+  border-style: solid;
+  padding: 10px;
+
+  @media screen and (max-width: 600px) {
+      flex-direction: column;
+    }
+
+  > div {
+    font-weight: bold;
+    text-align: center;
+    width: 50%;
+    padding: 10px;
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+    }
+  }
+}
+
 .Score {
+
   &__points {
     font-size: 64px;
     font-weight: bold;

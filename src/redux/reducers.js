@@ -1,6 +1,8 @@
 const initialState = {
   loading: true,
+  modelLoading: true,
   answer: '',
+  modelAnswer: '',
   gen: {
     number: null,
     firstNb: null,
@@ -8,6 +10,7 @@ const initialState = {
   },
   pkmn: {},
   points: 0,
+  modelPoints: 0,
   turn: 1,
   quizFinished: false,
   finalTime: '',
@@ -41,10 +44,22 @@ function reducer(state = initialState, action = {}) {
         loading: true,
       };
 
+    case 'MODEL_LOADING_TRUE':
+      return {
+        ...state,
+        modelLoading: true,
+      };
+
     case 'LOADING_FALSE':
       return {
         ...state,
         loading: false,
+      };
+
+    case 'MODEL_LOADING_FALSE':
+      return {
+        ...state,
+        modelLoading: false,
       };
 
     case 'SAVE_INPUT':
@@ -57,12 +72,25 @@ function reducer(state = initialState, action = {}) {
       return {
         ...state,
         answer: '',
+        modelAnswer: '',
+      };
+
+    case 'SAVE_MODEL_ANSWER':
+      return {
+        ...state,
+        modelAnswer: action.modelAnswer,
       };
 
     case 'SAVE_POINT':
       return {
         ...state,
         points: action.points,
+      };
+
+    case 'SAVE_MODEL_POINT':
+      return {
+        ...state,
+        modelPoints: action.modelPoints,
       };
 
     case 'NEW_TURN':
@@ -83,7 +111,9 @@ function reducer(state = initialState, action = {}) {
         ...state,
         turn: 1,
         points: 0,
+        modelPoints: 0,
         answer: '',
+        modelAnswer: ',',
         quizFinish: false,
       };
 

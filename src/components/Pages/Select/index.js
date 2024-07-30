@@ -8,19 +8,19 @@ import genIconData from '../../../assets/img/gen-icones';
 
 const generations = [
   {
-    gen: 1, name: 'Generation 1', icon: genIconData.gen1, alt: 'Bulbizarre',
+    gen: 1, name: 'Generation 1', icon: genIconData.gen1, alt: '',
   },
   {
-    gen: 2, name: 'Generation 2', icon: genIconData.gen2, alt: 'Kaiminus',
+    gen: 2, name: 'Generation 2', icon: genIconData.gen2, alt: '',
   },
   {
-    gen: 3, name: 'Generation 3', icon: genIconData.gen3, alt: 'Poussifeu',
+    gen: 3, name: 'Generation 3', icon: genIconData.gen3, alt: '',
   },
   {
-    gen: 4, name: 'Generation 4', icon: genIconData.gen4, alt: 'Tortipousse',
+    gen: 4, name: 'Generation 4', icon: genIconData.gen4, alt: '',
   },
   {
-    gen: 5, name: 'All Generations', alt: 'Tortipousse',
+    gen: 0, name: 'All Generations', alt: '',
   },
 ];
 

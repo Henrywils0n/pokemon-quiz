@@ -13,7 +13,7 @@ import { getTenDifferentNumber } from '../../../utils';
 function Quizz() {
   const { name, img } = useSelector((state) => state.pkmn);
   const {
-    loading, answer, points, turn,
+    loading, modelLoading, answer, modelAnswer, points, modelPoints, turn,
   } = useSelector((state) => state);
 
   const gen = useSelector((state) => state.gen);
@@ -36,6 +36,7 @@ function Quizz() {
     else {
       dispatch({ type: 'RESET_GAME' });
       dispatch({ type: 'LOADING_TRUE' });
+      dispatch({ type: 'MODEL_LOADING_TRUE' });
       pkmnIds.current = getTenDifferentNumber(gen.firstNb, gen.lastNb);
       dispatch({
         type: 'GET_POKEMON_BY_ID',
@@ -59,6 +60,12 @@ function Quizz() {
 
   useEffect(() => {
     timer.resumeTimer();
+    if (img) {
+      dispatch({
+        type: 'MAKE_PREDICTION',
+        imageURL: img,
+      });
+    }
   }, [img]);
 
   const newTurn = () => {
@@ -76,6 +83,7 @@ function Quizz() {
       dispatch({ type: 'NEW_TURN' });
       dispatch({ type: 'CLEAR_INPUT' });
       dispatch({ type: 'LOADING_TRUE' });
+      dispatch({ type: 'MODEL_LOADING_TRUE' });
       dispatch({
         type: 'GET_POKEMON_BY_ID',
         id: pkmnIds.current[parseInt(turn, 10)],
@@ -94,9 +102,12 @@ function Quizz() {
     setStop(true);
     const nameLower = name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     const answerLower = answer.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const modelAnswerLower = modelAnswer.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+    const modelFaults = distance(nameLower, modelAnswerLower);
     const faults = distance(nameLower, answerLower);
 
-    if (faults < 3) {
+    if (faults < 2) {
       const newPoints = points + 1;
       dispatch({
         type: 'SAVE_POINT',
@@ -109,17 +120,35 @@ function Quizz() {
     }
     setShowPkmn(true);
     timeoutId.current = setTimeout(newTurn, 2000);
+
+    if (modelFaults < 2) {
+      const newPoints = modelPoints + 1;
+      dispatch({
+        type: 'SAVE_MODEL_POINT',
+        modelPoints: newPoints,
+      });
+    }
   };
 
   if (loading) {
     return (
-      <img className="Quizz__loading-img" src={pokeball} alt="loading" />
+      <img className="Quiz__loading-img" src={pokeball} alt="loading" />
     );
   }
 
   return (
     <>
-      <h3 className="title">Question {turn}/10</h3>
+      <h3 className="title__reduced">Question {turn}/10</h3>
+      <div className="scoreboard">
+        <div>
+          <h4> Player </h4>
+          <p> {points} </p>
+        </div>
+        <div>
+          <h4> AI </h4>
+          <p> {modelPoints} </p>
+        </div>
+      </div>
       <p>Who is this Pokemon?</p>
       <div className={`Quiz__img-container${correct}`}>
         <img className={showPkmn || showPokemon ? 'Quiz__img' : 'Quiz__img-hidden'} src={img} alt="?" />
@@ -129,6 +158,11 @@ function Quizz() {
         <input className="Quiz__input" value={answer} autoFocus type="text" onChange={handleChange} />
         <button className="Quiz__button" type="submit"> ► </button>
       </form>
+      <div>
+        <p>
+          {showPkmn && !modelLoading ? `AI guessed ${modelAnswer}` : 'AI is thinking'}
+        </p>
+      </div>
       <div>{timer.timerDisplayStrings.minutes}:{timer.timerDisplayStrings.seconds}:{timer.timerDisplayStrings.milliseconds.slice(0, 2)}</div>
     </>
   );

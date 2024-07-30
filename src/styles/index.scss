@@ -12,4 +12,8 @@ body {
   font-size: 32px;
   text-align: center;
   font-weight: 700;
+
+  &__reduced {
+    font-size: 26px;
+  }
 }
