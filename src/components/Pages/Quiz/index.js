@@ -10,10 +10,10 @@ import './style.scss';
 import pokeball from '../../../assets/img/pokeball.svg';
 import { getTenDifferentNumber } from '../../../utils';
 
-function Quizz() {
+function Quiz() {
   const { name, img } = useSelector((state) => state.pkmn);
   const {
-    loading, modelLoading, answer, modelAnswer, points, modelPoints, turn,
+    loading, modelLoading, answer, modelAnswer, points, modelPoints, turn, apiAwake,
   } = useSelector((state) => state);
 
   const gen = useSelector((state) => state.gen);
@@ -135,6 +135,14 @@ function Quizz() {
       <img className="Quiz__loading-img" src={pokeball} alt="loading" />
     );
   }
+  if (!apiAwake) {
+    return (
+      <div>
+        <img className="Quiz__loading-img" src={pokeball} alt="loading" />
+        <p className="title__reduced">Freely Hosted model is waking up. This only happens in periods of no use. Please stand tight (should be 30s max).</p>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -158,18 +166,19 @@ function Quizz() {
         <input className="Quiz__input" value={answer} autoFocus type="text" onChange={handleChange} />
         <button className="Quiz__button" type="submit"> ► </button>
       </form>
-      <div>
+      <div style={{ display: 'flex' }}>
         <p>
           {showPkmn && !modelLoading ? `AI guessed ${modelAnswer}` : 'AI is thinking'}
         </p>
+        {!showPkmn || modelLoading ? <img className="Quiz__loading-img__small" src={pokeball} alt="loading" /> : null }
       </div>
       <div>{timer.timerDisplayStrings.minutes}:{timer.timerDisplayStrings.seconds}:{timer.timerDisplayStrings.milliseconds.slice(0, 2)}</div>
     </>
   );
 }
 
-Quizz.propTypes = {
+Quiz.propTypes = {
 
 };
 
-export default Quizz;
+export default Quiz;

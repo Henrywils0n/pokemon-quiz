@@ -42,6 +42,18 @@ const ajax = (store) => (next) => (action) => {
         });
       break;
     }
+    case 'WAKE_UP': {
+      axios.get('https://pokenet.onrender.com/wakeup')
+        .then(() => {
+          store.dispatch({
+            type: 'API_AWAKE',
+          });
+        })
+        .catch((error) => {
+          console.error('API Inactive:', error);
+        });
+      break;
+    }
     default:
       break;
   }

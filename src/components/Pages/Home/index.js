@@ -1,10 +1,18 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import './style.scss';
 
 import bulbizarre from '../../../assets/img/bulbizarre.png';
 
 function Home() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: 'WAKE_UP' });
+  });
+
   return (
     <>
       <h2 className="title">Pokemon Quiz</h2>

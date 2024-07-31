@@ -15,6 +15,7 @@ const initialState = {
   quizFinished: false,
   finalTime: '',
   showPokemon: false,
+  apiAwake: false,
 };
 
 function reducer(state = initialState, action = {}) {
@@ -36,6 +37,12 @@ function reducer(state = initialState, action = {}) {
           name: action.pkmnName,
           img: action.pkmnImg,
         },
+      };
+
+    case 'API_AWAKE':
+      return {
+        ...state,
+        apiAwake: true,
       };
 
     case 'LOADING_TRUE':
